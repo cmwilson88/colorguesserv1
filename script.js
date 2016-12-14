@@ -7,10 +7,10 @@ var hardRow = document.querySelector('.hardRow');
 var difficulty = document.querySelector('#difficulty');
 var displayGoal = document.querySelector('.displayGoal');
 var header = document.querySelector(".header1");
+var userMessage = document.querySelector(".userMessage");
+var bg = 'backgroundColor';
 var winningColor;
 var easy = false;
-
-var test = document.querySelector("#test");
 
 function randRGBValue() {
   return Math.floor(Math.random()*255);
@@ -20,7 +20,6 @@ function randIndex(arr) {
   return Math.floor(Math.random()*arr.length);
 }
 
-
 function generateRGB() {
   var color = 'rgb(';
   color += randRGBValue() + ', ';
@@ -29,46 +28,46 @@ function generateRGB() {
   return color;
 }
 
-function visible() {
-	for (var i=0; i< gameOptions.length; i++){
-		if (gameOptions[i].classList.contains('invisible')) {
-			gameOptions[i].classList.remove('invisible');
+function visible(arr) {
+	for (var i=0; i < arr.length; i++){
+		if (arr[i].classList.contains('invisible')) {
+			arr[i].classList.remove('invisible');
 		}
 	}
 }
 
-function displayWin() {
-	visible();
-	for (var i = 0; i < gameOptions.length; i++) {
-		gameOptions[i].style.backgroundColor = winningColor;
+function displayWin(arr) {
+	visible(arr);
+	for (var i = 0; i < arr.length; i++) {
+		arr[i].style[bg] = winningColor;
 	}
-	header.style.backgroundColor = winningColor;
+	header.style[bg] = winningColor;
 
 }
 
-function fillColors() {
+function fillColors(arr) {
   colors = [];
-  visible();
-  header.style.backgroundColor = "lightblue";
-  for (var i = 0; i < gameOptions.length; i++) {
+  visible(arr);
+  header.style[bg] = "lightblue";
+  for (var i = 0; i < arr.length; i++) {
     var color = generateRGB();
-    gameOptions[i].style.background = color;
+    arr[i].style[bg] = color;
     colors.push(color);
   }
   winningColor = colors[randIndex(colors)];
   displayGoal.textContent = winningColor;
+  userMessage.textContent = "Choose a tile to guess the color!";;
 }
 
-function guessColor (){
-    for (var i=0;i< gameOptions.length;i++){
-        gameOptions[i].addEventListener("click", function(){
-        	console.log(this.style.backgroundColor);
-        	if (this.style.backgroundColor === winningColor) {
-        		console.log("You Win");
-        		displayWin();
+function guessColor (arr){
+    for (var i=0;i< arr.length;i++){
+        arr[i].addEventListener("click", function(){
+        	if (this.style[bg] === winningColor) {
+        		displayWin(arr);
+            userMessage.textContent = 'You won!';
         	} else {
-        		console.log("Try again");
         		this.classList.add("invisible");
+            userMessage.textContent = "Try again!";
         	}
         })
     }
@@ -77,12 +76,14 @@ function guessColor (){
 
 
   
-resetButton.addEventListener("click", fillColors);
+resetButton.addEventListener("click", function() {
+  fillColors(gameOptions);
+});
 easyButton.addEventListener("click", function(){
   if (easy === false) {
     difficulty.removeChild(hardRow);
     easy = true;
-    fillColors();
+    fillColors(gameOptions);
   }
 });
 
@@ -90,10 +91,10 @@ hardButton.addEventListener("click", function(){
   if (easy === true) {
     difficulty.appendChild(hardRow);
     easy = false;
-    fillColors();
+    fillColors(gameOptions);
   }
 });
 
 
-fillColors();
-guessColor();
+fillColors(gameOptions);
+guessColor(gameOptions);
