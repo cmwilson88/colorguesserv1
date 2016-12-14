@@ -49,6 +49,7 @@ function displayWin() {
 function fillColors() {
   colors = [];
   visible();
+  header.style.backgroundColor = "lightblue";
   for (var i = 0; i < gameOptions.length; i++) {
     var color = generateRGB();
     gameOptions[i].style.background = color;
