@@ -1,0 +1,42 @@
+body {
+  background-color: gray !important;
+}
+
+header {
+  background-color: lightblue;
+  padding: 20px;
+  text-transform: uppercase;
+}
+
+.displayGoal,
+.title {
+  margin: 5px 0;
+}
+
+.container-fluid {
+  background-color: white;
+  padding: 5px;
+}
+
+.gameNav,
+.gameBoard {
+  width: 50%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.gameBoard {
+  margin-top: 20px;
+}
+
+.gameOption {
+  height: 200px;
+  width: 30% !important;
+  margin: 1.66%;
+  border-radius: 10px;
+  border: 2px solid black;
+  box-shadow: 0px 0px 5px black;
+}
+
+
+
