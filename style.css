@@ -1,3 +1,7 @@
+/*********************************
+ 			Tag Styles
+**********************************/
+
 body {
   background-color: gray !important;
 }
@@ -7,6 +11,10 @@ header {
   padding: 20px;
   text-transform: uppercase;
 }
+
+/*********************************
+ 			Classes
+**********************************/
 
 .displayGoal,
 .title {
@@ -35,7 +43,9 @@ header {
 	visibility: hidden;
 }
 
-
+/*********************************
+ 			Media Queries
+**********************************/
 
 /* Portrait tablets and small desktops */
 @media (min-width: 768px) and (max-width: 991px) {
